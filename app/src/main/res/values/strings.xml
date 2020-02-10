@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Yisos -App</string>
+    <string name="app_name">Yisos - App</string>
+    <string name="person_list">Explorar</string>
+    <string name="person_detail">Detalhes</string>
 </resources>
