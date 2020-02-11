@@ -1,5 +1,8 @@
 package com.carra.yisos_app.model.person
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Person (
     val username: String,
     val photo: String,

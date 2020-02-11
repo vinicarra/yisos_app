@@ -1,7 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</LinearLayout>
+    <data>
+        <import type="android.view.View"/>
+        <variable name="person" type="com.carra.yisos_app.model.person.Person"/>
+        <variable
+                name="viewmodel"
+                type="com.carra.yisos_app.view.ui.person_detail.PersonDetailViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:id="@+id/header"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+            <LinearLayout
+                    android:id="@+id/back_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="13dp">
+                <ImageView
+                        android:src="@drawable/arrow"
+                        android:contentDescription="@string/back"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:rotation="180"/>
+            </LinearLayout>
+            <ImageView
+                    android:id="@+id/cover_image"
+                    android:contentDescription="@string/cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:alpha="0.25"/>
+        </RelativeLayout>
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="1dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="70dp"
+        />
+
+        <LinearLayout
+                app:layout_constraintTop_toBottomOf="@id/profile_image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+            <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@{person.username}"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"/>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal" android:baselineAligned="false">
+                <LinearLayout android:layout_width="0dp"
+                              android:layout_height="wrap_content"
+                              android:layout_weight="1.0" android:orientation="vertical"
+                              android:paddingLeft="20dp"
+                              android:paddingRight="20dp"
+                              android:layout_gravity="center_vertical">
+                    <TextView
+                            android:id="@+id/age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:text="@{person.age+``}"
+                            android:textColor="@android:color/black"/>
+                    <TextView
+                            android:id="@+id/sexualOrientation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp"
+                            android:text="@{person.sexualOrientation}"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                              android:layout_weight="1.0" android:orientation="vertical"
+                              android:paddingLeft="20dp"
+                              android:paddingRight="20dp"
+                              android:layout_gravity="center_horizontal">
+                    <TextView
+                            android:id="@+id/city"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="20sp"
+                            android:text="@{person.city}"
+                            android:drawableTop="@drawable/pin"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

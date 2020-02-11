@@ -1,7 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<layout>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+                name="viewmodel"
+                type="com.carra.yisos_app.view.ui.person_list.PersonListViewModel"/>
+    </data>
 
-</LinearLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/person_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{safeUnbox(viewmodel.dataLoading) ? View.GONE : View.VISIBLE}"/>
+
+        <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="@{safeUnbox(viewmodel.dataLoading) ? View.VISIBLE : View.GONE}"/>
+
+        <LinearLayout android:id="@+id/retry" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:orientation="vertical" android:layout_centerInParent="true"
+                      android:visibility="@{!safeUnbox(viewmodel.dataLoading) &amp;&amp; safeUnbox(viewmodel.empty) ? View.VISIBLE : View.GONE}">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="@string/person_list_empty"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/retry"/>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

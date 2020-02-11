@@ -2,4 +2,8 @@
     <string name="app_name">Yisos - App</string>
     <string name="person_list">Explorar</string>
     <string name="person_detail">Detalhes</string>
+    <string name="back">Voltar</string>
+    <string name="cover">Cover</string>
+    <string name="person_list_empty">Não há pessoas no momento :(</string>
+    <string name="retry">Tentar novamente</string>
 </resources>

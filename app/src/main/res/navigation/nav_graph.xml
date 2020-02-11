@@ -10,7 +10,7 @@
             android:label="@string/person_list"
             tools:layout="@layout/fragment_person_list">
         <action
-                android:id="@+id/action_repoListFragment_to_repoDetailFragment"
+                android:id="@+id/action_personListFragment_to_personDetailFragment"
                 app:destination="@id/personDetailFragment" />
     </fragment>
     <fragment
@@ -18,9 +18,5 @@
             android:name="com.carra.yisos_app.view.ui.person_detail.PersonDetailFragment"
             android:label="@string/person_detail"
             tools:layout="@layout/fragment_person_detail">
-        <argument
-                android:name="url"
-                android:defaultValue="https://www.github.com"
-                app:argType="string"/>
     </fragment>
 </navigation>
