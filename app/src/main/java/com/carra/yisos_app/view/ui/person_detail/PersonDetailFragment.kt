@@ -27,17 +27,22 @@ class PersonDetailFragment : Fragment() {
 
     private lateinit var viewDataBinding: FragmentPersonDetailBinding
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.hide()
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewDataBinding = FragmentPersonDetailBinding.inflate(inflater, container, false).apply {
             viewmodel = ViewModelProviders.of(this@PersonDetailFragment).get(PersonDetailViewModel::class.java)
             lifecycleOwner = viewLifecycleOwner
         }
         return viewDataBinding.root
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).supportActionBar?.show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.hide()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

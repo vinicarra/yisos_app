@@ -10,18 +10,21 @@ import com.carra.yisos_app.view.ui.BaseViewModel
 class PersonListViewModel : BaseViewModel() {
 
     val personListLive = MutableLiveData<List<Person>>()
-    val hasLoaded = MutableLiveData<Boolean>().also { it.value = false }
+    private val hasLoaded = MutableLiveData<Boolean>().also { it.value = false }
 
     fun fetchPersonList() {
-        dataLoading.value = true
-        PersonRepository.getInstance().getPersonList { isSuccess, response ->
-            dataLoading.value = false
-            if (isSuccess) {
-                personListLive.value = response
-                hasLoaded.value = true
-                empty.value = false
-            } else {
-                empty.value = true
+        if (!hasLoaded.value!!) {
+            dataLoading.value = true
+            PersonRepository.getInstance().getPersonList { isSuccess, response ->
+                dataLoading.value = false
+                if (isSuccess) {
+                    personListLive.value = response
+                    hasLoaded.value = true
+                    empty.value = false
+                } else {
+                    empty.value = true
+                    hasLoaded.value = false
+                }
             }
         }
     }

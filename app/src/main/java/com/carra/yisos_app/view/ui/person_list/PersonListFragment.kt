@@ -31,15 +31,19 @@ class PersonListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (!viewDataBinding.viewmodel?.hasLoaded?.value!!) {
-            viewDataBinding.viewmodel?.fetchPersonList()
-        }
+        viewDataBinding.viewmodel?.fetchPersonList()
         setupAdapter()
         setupObservers()
 
         retry.onClick {
             viewDataBinding.viewmodel?.fetchPersonList()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewDataBinding.viewmodel?.personListLive?.removeObservers(viewLifecycleOwner)
+        viewDataBinding.viewmodel?.toastMessage?.removeObservers(viewLifecycleOwner)
     }
 
     private fun setupObservers() {
